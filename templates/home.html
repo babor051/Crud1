@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{% static 'enroll/bootstrap.min.css' %}"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>crud1</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="alert alert-success text-center">Django Function Based View Ajax CRUD Project</h2>
+        <div class="row">
+            <div class="col-sm-4">
+                <h4 class="alert alert-info text-center">Add/ Update Student</h4>
+                <form action="" method="POST">{% csrf_token %}
+                    <input type="hidden" name="stuid" id="stuid" />
+                    {{form.as_p}}
+                    <input id="btnSave" class="btn btn-success" type="button" value="Save" />
+                </form>
+            </div>
+            <div class="col-sm-7">
+                <h4 class="alert alert-primary text-center">Student Information</h4>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        {% for user in users %}
+                        <tr>
+                            <td>{{user.id}}</td>
+                            <td>{{user.name}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.password}}</td>
+                            <td>
+                                <input data-sid="{{user.id}}" class="btn btn-sm btn-primary btn-edit" type="button" value="Edit">
+                                <input data-sid="{{user.id}}" class="btn btn-sm btn-danger btn-del" type="button" value="Delete">
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="{% static 'enroll/jquery.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'enroll/bootstrap.js' %}"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript" src="{% static 'enroll/popper.js' %}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    
+    {% include 'ajax.html' %}
+
+
+</body>
+</html>
